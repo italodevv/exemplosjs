@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Catálogo de Receitas</title>
+    
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    
+        <style>
+        
+            h1 {
+                color: black;
+            }
+
+            img {
+                width: 250px;
+                height: 250px; 
+            }  
+    
+            body{
+                background-color: orange;
+            }
+
+            .card {
+                width: 250px;
+                margin: 10px;
+                border: 3px solid black;
+                border-radius: 12px;
+            }
+
+            .card-img-top {
+                border-bottom: 4px solid black;
+            }
+
+        </style>
+    
+    </head>
+    <body>
+    
+        <main class="container-fluid bg-warning">
+            <h1 class="text-center">Catálogo de Receitas</h1>
+            <div id="pnlCatalogo" class="d-flex flex-wrap mx-auto justify-content-center"></div>
+        </main>
+    
+        <script>
+            var receitas = [
+                {
+                    "titulo": "Frango Grelhado",
+                    "imagem": "imagens/frango-grelhado.jpg",
+                    "preparo": "Tempere o frango com sal, pimenta e azeite. Grelhe o frango em uma frigideira ou churrasqueira até ficar dourado e cozido por completo",
+                    "ingredientes": ['2 peitos de frango',
+                    '1 colher de sopa de azeite',
+                    'Sal e pimenta a gosto',]
+                },
+                {
+                    "titulo": "Pernil Assado",
+                    "imagem": "imagens/pernil-assado.jpg",
+                    "preparo": "Tempere o pernil com sal, pimenta, alho e suco de laranja. Asse o pernil em um forno pré-aquecido a 180°C por cerca de 3 horas, ou até ficar macio e dourado",
+                    "ingredientes": ['1 pernil de porco',
+                    '3 dentes de alho picados',
+                    '1/2 xícara de suco de laranja',
+                    'Sal e pimenta a gosto']
+                },
+                {
+                    "titulo": "Guacamole",
+                    "imagem": "imagens/guacamole.jpg",
+                    "preparo": "Corte os abacates ao meio e retire o caroço. Com uma colher, retire a polpa e coloque em um recipiente. Adicione o tomate, a cebola, a pimenta e o coentro. Misture bem. Acrescente o suco de limão e o sal a gosto. Misture novamente. Guarde na geladeira até a hora de servir.",
+                    "ingredientes": ['2 abacates maduros',
+                    '1 tomate picado',
+                    '1/2 cebola picada',
+                    '1/2 pimenta dedo-de-moça picada',
+                    '1/2 limão espremido',
+                    'Coentro picado a gosto',
+                    'Sal a gosto']
+                }
+            ];
+            
+            function getListaIngredientes(receita) {
+                var lista = receita.ingredientes.map(ingrediente => `<li>${ingrediente}</li>`).join('');
+                return `<ul>${lista}</ul>`;
+            }
+                
+            function getCard(receita) {
+                return `
+                    <div class="card">
+                        <img src="${receita.imagem}" class="card-img-top">
+                        <div class="card-body">
+                            <h5 class="card-title">${receita.titulo}</h5>
+                            <p class="card-text">${receita.preparo}</p>
+                            ${getListaIngredientes(receita)}
+                        </div>
+                    </div>
+                `;
+            }
+            
+            function preencheCatalogo() {
+                var catalogo = receitas.map(getCard).join('');
+                document.getElementById("pnlCatalogo").innerHTML = catalogo;
+            }
+    
+            window.onload = preencheCatalogo;
+        </script>
+
+<footer class="container-fluid bg-warning mt-5">
+    <div class="text-center">
+        Desenvolvido por Italo Costa &copy; 2023
+    </div>
+</footer>
+    
+    </body>
+    </html>
